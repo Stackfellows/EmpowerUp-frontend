@@ -1,0 +1,159 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, ShoppingBag, User, Sparkles } from 'lucide-react';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/login');
+  };
+
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/store', label: 'Store' },
+    { path: '/packages', label: 'Packages' },
+    { path: '/about', label: 'About' },
+  ];
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'bg-white/20 backdrop-blur-lg border-b border-white/20 shadow-lg' 
+        : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center space-x-2 group">
+            <div className="relative">
+              <Sparkles className="h-8 w-8 text-sky-500 group-hover:text-sky-400 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-sky-400 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+              EmpowerUp
+            </span>
+          </Link>
+
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    location.pathname === item.path
+                      ? 'bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30'
+                      : 'text-gray-700 hover:bg-white/10 hover:text-sky-600'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden md:flex items-center space-x-4">
+            <button className="relative p-2 text-gray-700 hover:text-sky-600 transition-colors duration-300 hover:scale-110">
+              <ShoppingBag className="h-6 w-6" />
+              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-sky-500 to-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                3
+              </span>
+            </button>
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm font-semibold text-sky-700">{user.name}</span>
+                <button
+                  onClick={handleLogout}
+                  className="bg-gradient-to-r from-pink-500 to-red-600 text-white px-4 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center space-x-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 glow-effect"
+              >
+                <User className="h-4 w-4" />
+                <span>Login</span>
+              </Link>
+            )}
+          </div>
+
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-gray-700 hover:text-sky-600 hover:bg-white/10 transition-all duration-300"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className={`md:hidden transition-all duration-500 ease-in-out ${
+        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      } overflow-hidden bg-white/20 backdrop-blur-lg border-b border-white/20`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsOpen(false)}
+              className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300 ${
+                location.pathname === item.path
+                  ? 'bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30'
+                  : 'text-gray-700 hover:bg-white/10 hover:text-sky-600'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          {user ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsOpen(false);
+              }}
+              className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-red-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 mt-4 mx-3"
+            >
+              <User className="h-4 w-4" />
+              <span>Logout</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 mt-4 mx-3"
+            >
+              <User className="h-4 w-4" />
+              <span>Login</span>
+            </Link>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
