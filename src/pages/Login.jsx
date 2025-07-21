@@ -25,7 +25,7 @@ const Login = () => {
     country: "",
     province: "",
     uplineName: "",
-    uplineId: "",
+    uplineId: "", // This will be the Sponsor's Referral ID
     phone: "",
     cnic: "",
     confirmPassword: "",
@@ -215,95 +215,92 @@ const Login = () => {
                   </div>
                 )}
 
-                {(paymentConfirmed || !formData.packageId) && (
-                  <>
+                {/* These inputs are now always visible during registration */}
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Full Name"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  placeholder="Date of Birth"
+                  value={formData.dateOfBirth}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="Country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="text"
+                  name="province"
+                  placeholder="Province"
+                  value={formData.province}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="text"
+                  name="uplineName"
+                  placeholder="Sponsor Name (Optional)" // Updated placeholder
+                  value={formData.uplineName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="text"
+                  name="uplineId"
+                  placeholder="Sponsor's Referral ID (Optional)" // Updated placeholder
+                  value={formData.uplineId}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone"
+                  maxLength={11}
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                <input
+                  type="text"
+                  name="cnic"
+                  maxLength={13}
+                  placeholder="CNIC"
+                  value={formData.cnic}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                />
+                {formData.packageId && (
+                  <div className="text-sm text-gray-700 p-2 bg-blue-50 rounded-lg">
+                    Selected Package:{" "}
+                    <span className="font-semibold">
+                      {formData.packageId.toUpperCase()}
+                    </span>{" "}
+                    (Payment Confirmed)
                     <input
-                      type="text"
-                      name="fullName"
-                      placeholder="Full Name"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
+                      type="hidden"
+                      name="packageId"
+                      value={formData.packageId}
                     />
-                    <input
-                      type="date"
-                      name="dateOfBirth"
-                      placeholder="Date of Birth"
-                      value={formData.dateOfBirth}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="text"
-                      name="country"
-                      placeholder="Country"
-                      value={formData.country}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="text"
-                      name="province"
-                      placeholder="Province"
-                      value={formData.province}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="text"
-                      name="uplineName"
-                      placeholder="Upline Name (Optional)"
-                      value={formData.uplineName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="text"
-                      name="uplineId"
-                      placeholder="Upline ID (Optional)"
-                      value={formData.uplineId}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone"
-                      maxLength={11}
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    <input
-                      type="text"
-                      name="cnic"
-                      maxLength={13}
-                      placeholder="CNIC"
-                      value={formData.cnic}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300"
-                    />
-                    {formData.packageId && (
-                      <div className="text-sm text-gray-700 p-2 bg-blue-50 rounded-lg">
-                        Selected Package:{" "}
-                        <span className="font-semibold">
-                          {formData.packageId.toUpperCase()}
-                        </span>{" "}
-                        (Payment Confirmed)
-                        <input
-                          type="hidden"
-                          name="packageId"
-                          value={formData.packageId}
-                        />
-                      </div>
-                    )}
-                  </>
+                  </div>
                 )}
               </>
             )}

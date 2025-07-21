@@ -102,16 +102,11 @@ const Navbar = () => {
             </button>
             {user ? (
               <div className="flex items-center space-x-2">
-                {/* 🌟 Display user's name 🌟 */}
+                {/* 🌟 Display user's name only 🌟 */}
                 <span className="text-sm font-semibold text-sky-700">
-                  {user.name}
+                  Hello, {user.name}!
                 </span>
-                <button
-                  onClick={handleLogout}
-                  className="bg-gradient-to-r from-pink-500 to-red-600 text-white px-4 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
-                >
-                  Logout
-                </button>
+                {/* Logout button removed as per request */}
               </div>
             ) : (
               <Link
@@ -160,17 +155,12 @@ const Navbar = () => {
             </Link>
           ))}
           {user ? (
-            <button
-              onClick={() => {
-                handleLogout();
-                setIsOpen(false);
-              }}
-              className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-red-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 mt-4 mx-3"
-            >
-              <User className="h-4 w-4" />
-              <span>Logout</span>
-            </button>
+            // 🌟 Display user's name only in mobile view 🌟
+            <span className="flex items-center space-x-2 text-sky-700 px-4 py-2 mt-4 mx-3 font-semibold">
+              Hello, {user.name}!
+            </span>
           ) : (
+            // Logout button removed as per request
             <Link
               to="/login"
               onClick={() => setIsOpen(false)}

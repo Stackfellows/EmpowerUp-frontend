@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  User,
+  User, // Keep User icon for the profile placeholder
   Mail,
   Phone,
   MapPin,
@@ -15,7 +15,7 @@ import {
   Camera,
   Globe,
   Building,
-  UserCheck,
+  UserCheck, // Used for Upline/Sponsor
   DollarSign,
   Target,
   Crown,
@@ -78,8 +78,7 @@ const UserProfile = () => {
           monthlyEarnings: userDataFromApi.user.points * 2, // Example calculation
           teamSize: Math.floor(userDataFromApi.user.points / 50), // Example calculation
           rank: userDataFromApi.user.designation,
-          profileImage:
-            "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300",
+          // profileImage: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300", // Removed image URL
         });
 
         // 2. API Call for Network Tab Data
@@ -216,17 +215,14 @@ const UserProfile = () => {
 
           <div className="relative z-10 p-8">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-              {/* Profile Image */}
+              {/* Profile Image / Icon */}
               <div className="relative">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-glow"
+                  className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-glow flex items-center justify-center bg-sky-200 text-sky-700" // Added bg and text for icon
                 >
-                  <img
-                    src={userData.profileImage}
-                    alt={userData.fullName}
-                    className="w-full h-full object-cover"
-                  />
+                  {/* Replaced img tag with Lucide User icon */}
+                  <User className="h-20 w-20" />
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -464,7 +460,7 @@ const UserProfile = () => {
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  {/* 🌟 UPDATED: Display Referral ID 🌟 */}
+                  {/* Referral ID */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <User className="h-5 w-5 text-sky-500" />
                     <div>
@@ -475,6 +471,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Full Name */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <User className="h-5 w-5 text-sky-500" />
                     <div>
@@ -485,6 +482,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Email Address */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Mail className="h-5 w-5 text-sky-500" />
                     <div>
@@ -495,6 +493,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Phone Number */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Phone className="h-5 w-5 text-sky-500" />
                     <div>
@@ -505,6 +504,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Date of Birth */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Calendar className="h-5 w-5 text-sky-500" />
                     <div>
@@ -519,6 +519,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className="space-y-4">
+                  {/* Country */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Globe className="h-5 w-5 text-sky-500" />
                     <div>
@@ -529,6 +530,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Province/State */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Building className="h-5 w-5 text-sky-500" />
                     <div>
@@ -539,6 +541,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* CNIC Number */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <CreditCard className="h-5 w-5 text-sky-500" />
                     <div>
@@ -549,6 +552,7 @@ const UserProfile = () => {
                     </div>
                   </div>
 
+                  {/* Join Date */}
                   <div className="flex items-center space-x-3 p-4 glass rounded-xl">
                     <Calendar className="h-5 w-5 text-sky-500" />
                     <div>
@@ -557,6 +561,28 @@ const UserProfile = () => {
                         {userData.joinDate
                           ? new Date(userData.joinDate).toLocaleDateString()
                           : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Sponsor Name - ADDED */}
+                  <div className="flex items-center space-x-3 p-4 glass rounded-xl">
+                    <UserCheck className="h-5 w-5 text-sky-500" />
+                    <div>
+                      <p className="text-sm text-sky-600">Sponsor Name</p>
+                      <p className="font-medium text-sky-800">
+                        {userData.uplineName}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Sponsor ID - ADDED */}
+                  <div className="flex items-center space-x-3 p-4 glass rounded-xl">
+                    <UserCheck className="h-5 w-5 text-sky-500" />
+                    <div>
+                      <p className="text-sm text-sky-600">Sponsor ID</p>
+                      <p className="font-medium text-sky-800">
+                        {userData.uplineId}
                       </p>
                     </div>
                   </div>
