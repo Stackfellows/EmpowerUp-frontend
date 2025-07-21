@@ -1,18 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Store from './pages/Store';
-import About from './pages/About';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import ProductForm from './pages/ProductForm';
-import Packages from './pages/Packages';
-import './styles/animations.css';
-import Payment from './pages/Payment.jsx';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Store from "./pages/Store";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import ProductForm from "./pages/ProductForm";
+import Packages from "./pages/Packages";
+import "./styles/animations.css";
+import Payment from "./pages/Payment.jsx";
 
-import Footer from './Footer.tsx';
-
+import Footer from "./Footer.tsx";
 
 function App() {
   return (
@@ -29,10 +28,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/product/:id" element={<ProductForm />} />
         </Routes>
-       
-       
-        <Footer/>
-         
+
+        <Footer />
       </div>
     </Router>
   );

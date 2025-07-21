@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ShoppingBag, User, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ShoppingBag, User, Sparkles } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // 🌟 UPDATED: user state will now hold the full user object 🌟
   const [user, setUser] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,35 +14,55 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    // 🌟 UPDATED: Load user data from localStorage when component mounts or user changes 🌟
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
-  }, []);
+
+    // Add an event listener for custom 'userLoggedIn' event
+    // This allows other components (like Login.jsx) to notify Navbar of a login
+    const handleUserLoggedIn = () => {
+      const updatedUser = JSON.parse(localStorage.getItem("user"));
+      setUser(updatedUser);
+    };
+    window.addEventListener("userLoggedIn", handleUserLoggedIn);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("userLoggedIn", handleUserLoggedIn);
+    };
+  }, []); // Empty dependency array means this runs once on mount
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(null);
-    navigate('/login');
+    navigate("/login");
+    // Optionally dispatch a custom event for other components to react to logout
+    window.dispatchEvent(new Event("userLoggedOut"));
   };
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/store', label: 'Store' },
-    { path: '/packages', label: 'Packages' },
-    { path: '/about', label: 'About' },
+    { path: "/", label: "Home" },
+    { path: "/store", label: "Store" },
+    { path: "/packages", label: "Packages" },
+    { path: "/about", label: "About" },
+    // 🌟 ADDED: User Profile link 🌟
+    { path: "/profile", label: "Profile" },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${
-      scrolled 
-        ? 'bg-white/20 backdrop-blur-lg border-b border-white/20 shadow-lg' 
-        : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/20 backdrop-blur-lg border-b border-white/20 shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 group">
@@ -62,8 +83,8 @@ const Navbar = () => {
                   to={item.path}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
                     location.pathname === item.path
-                      ? 'bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30'
-                      : 'text-gray-700 hover:bg-white/10 hover:text-sky-600'
+                      ? "bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30"
+                      : "text-gray-700 hover:bg-white/10 hover:text-sky-600"
                   }`}
                 >
                   {item.label}
@@ -81,7 +102,10 @@ const Navbar = () => {
             </button>
             {user ? (
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-semibold text-sky-700">{user.name}</span>
+                {/* 🌟 Display user's name 🌟 */}
+                <span className="text-sm font-semibold text-sky-700">
+                  {user.name}
+                </span>
                 <button
                   onClick={handleLogout}
                   className="bg-gradient-to-r from-pink-500 to-red-600 text-white px-4 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
@@ -105,15 +129,21 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-gray-700 hover:text-sky-600 hover:bg-white/10 transition-all duration-300"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      <div className={`md:hidden transition-all duration-500 ease-in-out ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-      } overflow-hidden bg-white/20 backdrop-blur-lg border-b border-white/20`}>
+      <div
+        className={`md:hidden transition-all duration-500 ease-in-out ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } overflow-hidden bg-white/20 backdrop-blur-lg border-b border-white/20`}
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item) => (
             <Link
@@ -122,8 +152,8 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300 ${
                 location.pathname === item.path
-                  ? 'bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30'
-                  : 'text-gray-700 hover:bg-white/10 hover:text-sky-600'
+                  ? "bg-white/20 text-sky-700 shadow-lg backdrop-blur-sm border border-white/30"
+                  : "text-gray-700 hover:bg-white/10 hover:text-sky-600"
               }`}
             >
               {item.label}
