@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ShoppingBag, User, Sparkles } from "lucide-react";
+import { Menu, X, ShoppingBag, User, Sparkles, LogOut } from "lucide-react"; // Import LogOut icon
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  // 🌟 UPDATED: user state will now hold the full user object 🌟
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); // State to hold the full user object
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // 🌟 UPDATED: Load user data from localStorage when component mounts or user changes 🌟
+    // Load user data from localStorage when component mounts
     const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
 
@@ -31,18 +30,26 @@ const Navbar = () => {
     };
     window.addEventListener("userLoggedIn", handleUserLoggedIn);
 
-    // Cleanup the event listener on component unmount
+    // Add an event listener for a custom 'userLoggedOut' event
+    // This allows other components (or even this one) to update the UI on logout
+    const handleUserLoggedOut = () => {
+      setUser(null);
+    };
+    window.addEventListener("userLoggedOut", handleUserLoggedOut);
+
+    // Cleanup the event listeners on component unmount
     return () => {
       window.removeEventListener("userLoggedIn", handleUserLoggedIn);
+      window.removeEventListener("userLoggedOut", handleUserLoggedOut);
     };
   }, []); // Empty dependency array means this runs once on mount
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setUser(null);
-    navigate("/login");
-    // Optionally dispatch a custom event for other components to react to logout
+    localStorage.removeItem("token"); // Remove authentication token
+    localStorage.removeItem("user"); // Remove user data
+    setUser(null); // Clear user state in Navbar
+    navigate("/login"); // Redirect to login page
+    // Dispatch a custom event to notify other components of logout
     window.dispatchEvent(new Event("userLoggedOut"));
   };
 
@@ -51,8 +58,7 @@ const Navbar = () => {
     { path: "/store", label: "Store" },
     { path: "/packages", label: "Packages" },
     { path: "/about", label: "About" },
-    // 🌟 ADDED: User Profile link 🌟
-    { path: "/profile", label: "Profile" },
+    { path: "/profile", label: "Profile" }, // User Profile link
   ];
 
   return (
@@ -101,12 +107,20 @@ const Navbar = () => {
               </span>
             </button>
             {user ? (
-              <div className="flex items-center space-x-2">
-                {/* 🌟 Display user's name only 🌟 */}
+              <div className="flex items-center space-x-4">
+                {" "}
+                {/* Increased space-x for better separation */}
                 <span className="text-sm font-semibold text-sky-700">
                   Hello, {user.name}!
                 </span>
-                {/* Logout button removed as per request */}
+                {/* Logout button for desktop */}
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-rose-600 text-white px-4 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 glow-effect"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </button>
               </div>
             ) : (
               <Link
@@ -155,16 +169,28 @@ const Navbar = () => {
             </Link>
           ))}
           {user ? (
-            // 🌟 Display user's name only in mobile view 🌟
-            <span className="flex items-center space-x-2 text-sky-700 px-4 py-2 mt-4 mx-3 font-semibold">
-              Hello, {user.name}!
-            </span>
+            <>
+              {/* Display user's name in mobile view */}
+              <span className="flex items-center space-x-2 text-sky-700 px-3 py-2 mt-4 mx-3 font-semibold">
+                Hello, {user.name}!
+              </span>
+              {/* Logout button for mobile */}
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false); // Close mobile menu after logout
+                }}
+                className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-rose-600 text-white px-3 py-2 rounded-lg hover:shadow-lg transition-all duration-300 mt-2 mx-3"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </button>
+            </>
           ) : (
-            // Logout button removed as per request
             <Link
               to="/login"
               onClick={() => setIsOpen(false)}
-              className="flex items-center space-x-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 mt-4 mx-3"
+              className="flex items-center space-x-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white px-3 py-2 rounded-lg hover:shadow-lg transition-all duration-300 mt-4 mx-3"
             >
               <User className="h-4 w-4" />
               <span>Login</span>

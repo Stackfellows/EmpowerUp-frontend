@@ -6,6 +6,7 @@ import Testimonials from "../components/Testimonials";
 import Newsletter from "../components/Newsletter";
 import FloatingProducts from "../components/FloatingProducts";
 import UserProfile from "../components/UserProfile";
+import AdminDashboard from "../components/AdminDashboard";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Testimonials />
       <Newsletter />
       <UserProfile />
+      <AdminDashboard />
     </div>
   );
 };
