@@ -6,69 +6,98 @@ const FeaturedProducts = () => {
   const products = [
     {
       id: 1,
-      name: "Vitamin C Brightening Serum",
-      price: "$45.99",
-      originalPrice: "$59.99",
+      name: "Charcol Face Wash",
+      price:1550,
+      originalPrice: "",
       discount: "23% OFF",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "../src/Assets/1-Photoroom.png",
       rating: 4.8,
       reviews: 124,
-      category: "Skincare"
+      category: "Skincare",
+      points :1.5 
     },
     {
       id: 2,
-      name: "Organic Honey Face Mask",
-      price: "$29.99",
-      originalPrice: "$39.99",
+      name: "Brightening Clay Mask",
+      price: 500,
+      originalPrice: "",
       discount: "25% OFF",
-      image: "https://images.pexels.com/photos/4041299/pexels-photo-4041299.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "../src/Assets/2-Photoroom.png",
       rating: 4.9,
       reviews: 89,
-      category: "Masks"
+      category: "Masks",
+      points: 0.5
     },
     {
       id: 3,
-      name: "Luxury Soap Collection",
-      price: "$34.99",
+      name: "Lightening Face Scrub",
+      price: 1050,
       originalPrice: "$49.99",
       discount: "30% OFF",
-      image: "https://images.pexels.com/photos/4041298/pexels-photo-4041298.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "../src/Assets/3-Photoroom.png",
       rating: 4.7,
       reviews: 67,
-      category: "Bath & Body"
+    points:1
     },
     {
       id: 4,
-      name: "Anti-Aging Night Cream",
-      price: "$52.99",
+      name: "24K Gold Face Scrub",
+      price: 1450,
       originalPrice: "$69.99",
       discount: "24% OFF",
-      image: "https://images.pexels.com/photos/4465619/pexels-photo-4465619.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "../src/Assets/4-Photoroom.png",
       rating: 4.8,
       reviews: 156,
-      category: "Anti-Aging"
+      category: "Anti-Aging",
+       points: 1.5
     },
     {
       id: 5,
-      name: "Gentle Cleansing Foam",
-      price: "$24.99",
+      name: "Bright Beauty Face Wash",
+      price: 1400,
       originalPrice: "$32.99",
       discount: "24% OFF",
-      image: "https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "../src/Assets/5-Photoroom.png",
       rating: 4.6,
       reviews: 203,
-      category: "Cleansers"
+      category: "Cleansers",
+       points: 1.5
     },
     {
       id: 6,
-      name: "Hydrating Lip Balm Set",
-      price: "$18.99",
+      name: "Whitening Delight Soap",
+      price: 3500,
       originalPrice: "$24.99",
       discount: "24% OFF",
-      image: "https://images.pexels.com/photos/5240446/pexels-photo-5240446.jpeg?auto=compress&cs=tinysrgb&w=400",  
+      image: "../src/Assets/7-Photoroom.png",  
       rating: 4.9,
       reviews: 98,
-      category: "Lips"
+      category: "Lips",
+       points: 3
+    },
+    {
+      id: 7,
+      name: "Refreshing Scrub Soap",
+      price: 1050,
+      originalPrice: "$24.99",
+      discount: "24% OFF",
+      image: "../src/Assets/8-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      category: "Lips",
+       points: 1
+    },
+    {
+      id: 8,
+      name: "Shine & Strong Shampoo",
+      price: 1750,
+      originalPrice: "$24.99",
+      discount: "24% OFF",
+      image: "../src/Assets/product-shampoo-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      category: "Lips",
+       points:1.5 
     }
   ];
 
@@ -100,7 +129,7 @@ const FeaturedProducts = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full  transition-transform duration-700 group-hover:scale-110"
                 />
                 
                 {/* Discount Badge */}
@@ -162,17 +191,17 @@ const FeaturedProducts = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="text-2xl font-bold text-sky-600">
-                      {product.price}
+                     Rs{product.price}
                     </span>
                     <span className="text-sm text-gray-500 line-through">
-                      {product.originalPrice}
+                     Rs{product.originalPrice}
                     </span>
                   </div>
                   
                   <div className="flex items-center space-x-2">
-                    <button className="p-2 text-gray-600 hover:text-red-500 transition-colors duration-300 hover:scale-110">
-                      <Heart className="w-5 h-5" />
-                    </button>
+               <span className="text-2xl font-bold text-sky-600">
+                      P{product.points}
+                    </span>
                     <button className="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 glow-effect">
                       <ShoppingCart className="w-4 h-4" />
                     </button>

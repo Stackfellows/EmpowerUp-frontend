@@ -10,8 +10,10 @@ import ProductForm from "./pages/ProductForm";
 import Packages from "./pages/Packages";
 import "./styles/animations.css";
 import Payment from "./pages/Payment.jsx";
-
+import SimpleCommissionDashboard from "./pages/SimpleCommissionDashboard.jsx";
 import Footer from "./Footer.tsx";
+import UserProfile from "./components/UserProfile.jsx";
+
 
 function App() {
   return (
@@ -25,8 +27,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<UserProfile />} />
           <Route path="/product/:id" element={<ProductForm />} />
+         
+          {/* <Route path="/commission-dashboard" element={<SimpleCommissionDashboard userId="" />} /> */}
         </Routes>
 
         <Footer />

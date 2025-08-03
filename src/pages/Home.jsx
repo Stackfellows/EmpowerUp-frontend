@@ -5,8 +5,9 @@ import NetworkStats from "../components/NetworkStats";
 import Testimonials from "../components/Testimonials";
 import Newsletter from "../components/Newsletter";
 import FloatingProducts from "../components/FloatingProducts";
-import UserProfile from "../components/UserProfile";
+// import UserProfile from "../components/UserProfile";
 import AdminDashboard from "../components/AdminDashboard";
+import SimpleCommissionDashboard from "./SimpleCommissionDashboard";
 
 const Home = () => {
   return (
@@ -17,8 +18,9 @@ const Home = () => {
       <NetworkStats />
       <Testimonials />
       <Newsletter />
-      <UserProfile />
-      <AdminDashboard />
+      {/* <UserProfile /> */}
+      {/* <AdminDashboard /> */}
+      {/* <SimpleCommissionDashboard  /> */}
     </div>
   );
 };

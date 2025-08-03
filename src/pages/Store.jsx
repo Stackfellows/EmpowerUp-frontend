@@ -22,45 +22,116 @@ const Store = () => {
 
   const getDiscountPercentage = (designation) => {
     switch (designation) {
-      case 'Silver': return 3;
-      case 'Gold': return 5;
-      case 'Platinum': return 8;
-      case 'Diamond': return 11;
-      case 'Bronze': return 0;
+      case 'Silver': return 8;
+      case 'Gold': return 15;
+      case 'Platinum': return 20;
+      case 'Diamond': return 35 ;
+      case 'Bronze': return 3;
       default: return 0;
     }
   };
 
   const discount = getDiscountPercentage(user?.designation);
 
-  const categories = ['All', 'Skincare', 'Cleansers', 'Moisturizers', 'Serums', 'Masks', 'Anti-Aging', 'Bath & Body'];
+  // const categories = ['All', 'Skincare', 'Cleansers', 'Moisturizers', 'Serums', 'Masks', 'Anti-Aging', 'Bath & Body'];
 
-  const products = [
+    const products = [
     {
       id: 1,
-      name: "Vitamin C Brightening Serum",
-      price: 45.99,
-      originalPrice: 59.99,
-      category: "Serums",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Charcol Face Wash",
+      price:1550,
+      originalPrice: 1550,
+      // discount: "23% OFF",
+      image: "../src/Assets/1-Photoroom.png",
       rating: 4.8,
       reviews: 124,
-      description: "Powerful vitamin C serum for brighter, more radiant skin",
-      featured: true
+      // category: "Skincare",
+      points :"1.5 P" 
     },
     {
-      id: 1,
-      name: "Vitamin C Brightening Serum",
-      price: 45.99,
-      originalPrice: 59.99,
-      category: "Serums",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
-      rating: 4.8,
-      reviews: 124,
-      description: "Powerful vitamin C serum for brighter, more radiant skin",
-      featured: true
+      id: 2,
+      name: "Brightening Clay Mask",
+      price: 500,
+      originalPrice: "500",
+      // discount: "25% OFF",
+      image: "../src/Assets/2-Photoroom.png",
+      rating: 4.9,
+      reviews: 89,
+      // category: "Masks",
+      points: "0.5 P"
     },
-    // (other products remain same, with price as numbers, not strings)
+    {
+      id: 3,
+      name: "Lightening Face Scrub",
+      price: 1050,
+      originalPrice: 1050,
+      // discount: "30% OFF",
+      image: "../src/Assets/3-Photoroom.png",
+      rating: 4.7,
+      reviews: 67,
+      points:1
+      // category: "Bath & Body"
+    },
+    {
+      id: 4,
+      name: "24K Gold Face Scrub",
+      price: 1450,
+      originalPrice: 1450,
+      // discount: "24% OFF",
+      image: "../src/Assets/4-Photoroom.png",
+      rating: 4.8,
+      reviews: 156,
+      // category: "Anti-Aging",
+       points: "1.5 P"
+    },
+    {
+      id: 5,
+      name: "Bright Beauty Face Wash",
+      price: 1500,
+      originalPrice:1500,
+      // discount: "24% OFF",
+      image: "../src/Assets/5-Photoroom.png",
+      rating: 4.6,
+      reviews: 203,
+      category: "Cleansers",
+       points: "1.5 P"
+    },
+    {
+      id: 6,
+      name: "Whitening Delight Soap",
+      price: 3500,
+      originalPrice: 3500,
+      // discount: "24% OFF",
+      image: "../src/Assets/7-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      // category: "Lips",
+       points: "3 P"
+    },
+    {
+      id: 7,
+      name: "Refreshing Scrub Soap",
+      price: 1050,
+      originalPrice: 1050,
+      // discount: "24% OFF",
+      image: "../src/Assets/8-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      // category: "Lips",
+       points: "1 P"
+    },
+    {
+      id: 8,
+      name: "Shine & Strong Shampoo",
+      price: 1750,
+      originalPrice: 1750,
+      // discount: "24% OFF",
+      image: "../src/Assets/product-shampoo-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      // category: "Lips",
+       points:"1.5 P"
+    }
   ];
 
   const filteredProducts = products.filter(product => {
@@ -100,13 +171,13 @@ const Store = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full  transition-transform duration-700 group-hover:scale-110"
                   />
 
                   {/* Discount Badge */}
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
-                    {discount > 0 ? `-${discount}%` : null}
-                  </div>
+                  {/* <div className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
+                    {discount > 0 ? `-Rs{discount}%` : null}
+                  </div> */}
 
                   {/* Category Badge */}
                   <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-sm font-medium border border-white/30">
@@ -162,17 +233,17 @@ const Store = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <span className="text-2xl font-bold text-sky-600">
-                        ${finalPrice.toFixed(2)}
+                        Rs{finalPrice.toFixed(2)}
                       </span>
                       <span className="text-sm text-gray-500 line-through">
-                        ${product.originalPrice}
+                        Rs{product.originalPrice}
                       </span>
                     </div>
 
                     <div className="flex items-center space-x-2">
-                      <button className="p-2 text-gray-600 hover:text-red-500 transition-colors duration-300 hover:scale-110">
-                        <Heart className="w-5 h-5" />
-                      </button>
+                    <span className="text-2xl font-bold text-sky-600">
+                      P{product.points}
+                    </span>
                       <button className="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 glow-effect">
                         <ShoppingCart className="w-4 h-4" />
                       </button>

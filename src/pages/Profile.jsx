@@ -44,7 +44,7 @@ const Profile = () => {
         const userId = loggedInUser.id;
         const token = localStorage.getItem('token'); // Get token if you plan to use it for auth
 
-        const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+        const response = await fetch(`https://enpowerup-1.onrender.com/api/users/${userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

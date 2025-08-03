@@ -82,7 +82,7 @@ const Login = () => {
 
     if (isLogin) {
       try {
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("https://enpowerup-1.onrender.com/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -107,7 +107,7 @@ const Login = () => {
         );
 
         console.log("Attempting to navigate to /store after successful login.");
-        navigate("/store");
+        navigate("/UserProfile");
       } catch (error) {
         console.error("Login error:", error.message);
         // Error message already handled by showCustomMessageBox above
@@ -125,7 +125,7 @@ const Login = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/users/register",
+          "https://enpowerup-1.onrender.com/api/users/register",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -255,7 +255,7 @@ const Login = () => {
                 <input
                   type="text"
                   name="uplineName"
-                  placeholder="Sponsor Name (Optional)" // Updated placeholder
+                  placeholder="Sponsor Name " // Updated placeholder
                   value={formData.uplineName}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 rounded-lg border border-gray-300"
@@ -263,7 +263,7 @@ const Login = () => {
                 <input
                   type="text"
                   name="uplineId"
-                  placeholder="Sponsor's Referral ID (Optional)" // Updated placeholder
+                  placeholder="Sponsor's Referral ID " // Updated placeholder
                   value={formData.uplineId}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 rounded-lg border border-gray-300"

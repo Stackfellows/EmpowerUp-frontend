@@ -56,7 +56,7 @@ const Navbar = () => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/store", label: "Store" },
-    { path: "/packages", label: "Packages" },
+    { path: "/packages", label: "Join" },
     { path: "/about", label: "About" },
     { path: "/profile", label: "Profile" }, // User Profile link
   ];
@@ -71,14 +71,15 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 ">
             <div className="relative">
-              <Sparkles className="h-8 w-8 text-sky-500 group-hover:text-sky-400 transition-colors duration-300" />
-              <div className="absolute inset-0 bg-sky-400 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+            <img src="../src/Assets/Final Logo.svg" alt="" className="h-14 w-14" />
+              {/* <Sparkles className="h-8 w-8 text-sky-500 group-hover:text-sky-400 transition-colors duration-300" /> */}
+              {/* <div className="absolute inset-0 bg-sky-400 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div> */}
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+            {/* <span className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
               EmpowerUp
-            </span>
+            </span> */}
           </Link>
 
           <div className="hidden md:block">
@@ -100,12 +101,12 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button className="relative p-2 text-gray-700 hover:text-sky-600 transition-colors duration-300 hover:scale-110">
+            {/* <button className="relative p-2 text-gray-700 hover:text-sky-600 transition-colors duration-300 hover:scale-110">
               <ShoppingBag className="h-6 w-6" />
               <span className="absolute -top-1 -right-1 bg-gradient-to-r from-sky-500 to-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
                 3
               </span>
-            </button>
+            </button> */}
             {user ? (
               <div className="flex items-center space-x-4">
                 {" "}

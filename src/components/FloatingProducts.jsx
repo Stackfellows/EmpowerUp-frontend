@@ -1,15 +1,113 @@
 import React from 'react';
 
 const FloatingProducts = () => {
+   const product = [
+    {
+      id: 1,
+      name: "Charcol Face Wash",
+      price:1550,
+      originalPrice: "",
+      discount: "23% OFF",
+      image: "../src/Assets/1-Photoroom.png",
+      rating: 4.8,
+      reviews: 124,
+      category: "Skincare",
+      points :1.5 
+    },
+    {
+      id: 2,
+      name: "Brightening Clay Mask",
+      price: 500,
+      originalPrice: "",
+      discount: "25% OFF",
+      image: "../src/Assets/2-Photoroom.png",
+      rating: 4.9,
+      reviews: 89,
+      category: "Masks",
+      points: 0.5
+    },
+    {
+      id: 3,
+      name: "Lightening Face Scrub",
+      price: 1050,
+      originalPrice: "$49.99",
+      discount: "30% OFF",
+      image: "../src/Assets/3-Photoroom.png",
+      rating: 4.7,
+      reviews: 67,
+    points:1
+    },
+    {
+      id: 4,
+      name: "24K Gold Face Scrub",
+      price: 1450,
+      originalPrice: "$69.99",
+      discount: "24% OFF",
+      image: "../src/Assets/4-Photoroom.png",
+      rating: 4.8,
+      reviews: 156,
+      category: "Anti-Aging",
+       points: 1.5
+    },
+    {
+      id: 5,
+      name: "Bright Beauty Face Wash",
+      price: 1400,
+      originalPrice: "$32.99",
+      discount: "24% OFF",
+      image: "../src/Assets/5-Photoroom.png",
+      rating: 4.6,
+      reviews: 203,
+      category: "Cleansers",
+       points: 1.5
+    },
+    {
+      id: 6,
+      name: "Whitening Delight Soap",
+      price: 3500,
+      originalPrice: "$24.99",
+      discount: "24% OFF",
+      image: "../src/Assets/7-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      category: "Lips",
+       points: 3
+    },
+    {
+      id: 7,
+      name: "Refreshing Scrub Soap",
+      price: 1050,
+      originalPrice: "$24.99",
+      discount: "24% OFF",
+      image: "../src/Assets/8-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      category: "Lips",
+       points: 1
+    },
+    {
+      id: 8,
+      name: "Shine & Strong Shampoo",
+      price: 1750,
+      originalPrice: "$24.99",
+      discount: "24% OFF",
+      image: "../src/Assets/product-shampoo-Photoroom.png",  
+      rating: 4.9,
+      reviews: 98,
+      category: "Lips",
+       points:1.5 
+    }
+  ];
+
   const floatingProducts = [
     {
       id: 1,
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "../src/Assets/1-Photoroom.png",
       position: "top-20 left-10",
       animation: "animate-float-slow"
     },
     {
-      id: 2,
+      id: 0,
       image: "https://images.pexels.com/photos/4041299/pexels-photo-4041299.jpeg?auto=compress&cs=tinysrgb&w=200",
       position: "top-40 right-20",
       animation: "animate-float-medium"

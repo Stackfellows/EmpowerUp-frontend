@@ -45,7 +45,7 @@ const UserProfile = () => {
 
         // 1. API Call for Main User Profile Data (Overview & Personal Info)
         const userResponse = await fetch(
-          `http://localhost:5000/api/users/${storedUser.id}`,
+          `https://enpowerup-1.onrender.com/api/users/${storedUser.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -74,8 +74,8 @@ const UserProfile = () => {
           uplineId: userDataFromApi.user.uplineId || "N/A", // The actual upline's MongoDB ID
           joinDate: userDataFromApi.user.createdAt, // Using createdAt for joinDate
           membershipLevel: userDataFromApi.user.designation,
-          totalEarnings: userDataFromApi.user.points * 10, // Example calculation
-          monthlyEarnings: userDataFromApi.user.points * 2, // Example calculation
+          totalEarnings: userDataFromApi.user.points * 1, // Example calculation
+          monthlyEarnings: userDataFromApi.user.points * 1, // Example calculation
           teamSize: Math.floor(userDataFromApi.user.points / 50), // Example calculation
           rank: userDataFromApi.user.designation,
           // profileImage: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300", // Removed image URL
@@ -83,7 +83,7 @@ const UserProfile = () => {
 
         // 2. API Call for Network Tab Data
         const networkResponse = await fetch(
-          `http://localhost:5000/api/users/network-data/${storedUser.id}`,
+          `https://enpowerup-1.onrender.com/users/network-data/${storedUser.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -104,7 +104,7 @@ const UserProfile = () => {
 
         // 3. API Call for Achievements Tab Data
         const achievementsResponse = await fetch(
-          `http://localhost:5000/api/users/achievements-data/${storedUser.id}`,
+          `https://enpowerup-1.onrender.com/api/users/achievements-data/${storedUser.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -134,8 +134,8 @@ const UserProfile = () => {
 
   const stats = [
     {
-      label: "Total Earnings",
-      value: `$${userData?.totalEarnings?.toLocaleString() || "0"}`,
+      label: "Total Points",
+      value: `${userData?.totalEarnings?.toLocaleString() || "0"}`,
       icon: <DollarSign className="h-6 w-6" />,
       color: "from-green-500 to-emerald-600",
     },

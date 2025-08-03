@@ -68,8 +68,10 @@ const Footer = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-sky-400 to-blue-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">E</span>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-white to-sky-100 flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">
+                    <img src="../src/Assets/Final Logo.svg" alt="" className='h-10 w-10' />
+                  </span>
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold">EmpowerUp</h3>
@@ -229,7 +231,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-semibold">Email Us</p>
-                <p className="text-sky-200 text-sm">hello@empowerup.com</p>
+                <p className="text-sky-200 text-sm">hello@empowerupnetworkcompany.com</p>
               </div>
             </div>
 
@@ -239,7 +241,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-semibold">Call Us</p>
-                <p className="text-sky-200 text-sm">+1 (555) 123-4567</p>
+                <p className="text-sky-200 text-sm">+92 321880511</p>
               </div>
             </div>
 
@@ -249,7 +251,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-semibold">Visit Us</p>
-                <p className="text-sky-200 text-sm">New York, NY 10001</p>
+                <p className="text-sky-200 text-sm">Lahore</p>
               </div>
             </div>
           </div>
@@ -264,7 +266,7 @@ const Footer = () => {
           className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10"
         >
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <span className="text-sky-200">© 2024 EmpowerUp. Made with</span>
+            <span className="text-sky-200">© 2025 EmpowerUp. Made with</span>
             <Heart className="h-4 w-4 text-red-400 fill-current" />
             <span className="text-sky-200">for beauty enthusiasts</span>
           </div>
