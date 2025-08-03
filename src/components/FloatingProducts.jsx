@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
 const FloatingProducts = () => {
-   const product = [
+  const product = [
     {
       id: 1,
       name: "Charcol Face Wash",
-      price:1550,
+      price: 1550,
       originalPrice: "",
       discount: "23% OFF",
       image: "../src/Assets/1-Photoroom.png",
       rating: 4.8,
       reviews: 124,
       category: "Skincare",
-      points :1.5 
+      points: 1.5,
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const FloatingProducts = () => {
       rating: 4.9,
       reviews: 89,
       category: "Masks",
-      points: 0.5
+      points: 0.5,
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ const FloatingProducts = () => {
       image: "../src/Assets/3-Photoroom.png",
       rating: 4.7,
       reviews: 67,
-    points:1
+      points: 1,
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const FloatingProducts = () => {
       rating: 4.8,
       reviews: 156,
       category: "Anti-Aging",
-       points: 1.5
+      points: 1.5,
     },
     {
       id: 5,
@@ -59,7 +59,7 @@ const FloatingProducts = () => {
       rating: 4.6,
       reviews: 203,
       category: "Cleansers",
-       points: 1.5
+      points: 1.5,
     },
     {
       id: 6,
@@ -67,11 +67,11 @@ const FloatingProducts = () => {
       price: 3500,
       originalPrice: "$24.99",
       discount: "24% OFF",
-      image: "../src/Assets/7-Photoroom.png",  
+      image: "../src/Assets/7-Photoroom.png",
       rating: 4.9,
       reviews: 98,
       category: "Lips",
-       points: 3
+      points: 3,
     },
     {
       id: 7,
@@ -79,11 +79,11 @@ const FloatingProducts = () => {
       price: 1050,
       originalPrice: "$24.99",
       discount: "24% OFF",
-      image: "../src/Assets/8-Photoroom.png",  
+      image: "../src/Assets/8-Photoroom.png",
       rating: 4.9,
       reviews: 98,
       category: "Lips",
-       points: 1
+      points: 1,
     },
     {
       id: 8,
@@ -91,12 +91,12 @@ const FloatingProducts = () => {
       price: 1750,
       originalPrice: "$24.99",
       discount: "24% OFF",
-      image: "../src/Assets/product-shampoo-Photoroom.png",  
+      image: "../src/Assets/product-shampoo-Photoroom.png",
       rating: 4.9,
       reviews: 98,
       category: "Lips",
-       points:1.5 
-    }
+      points: 1.5,
+    },
   ];
 
   const floatingProducts = [
@@ -104,26 +104,29 @@ const FloatingProducts = () => {
       id: 1,
       image: "../src/Assets/1-Photoroom.png",
       position: "top-20 left-10",
-      animation: "animate-float-slow"
+      animation: "animate-float-slow",
     },
     {
       id: 0,
-      image: "https://images.pexels.com/photos/4041299/pexels-photo-4041299.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image:
+        "https://images.pexels.com/photos/4041299/pexels-photo-4041299.jpeg?auto=compress&cs=tinysrgb&w=200",
       position: "top-40 right-20",
-      animation: "animate-float-medium"
+      animation: "animate-float-medium",
     },
     {
       id: 3,
-      image: "https://images.pexels.com/photos/4041298/pexels-photo-4041298.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image:
+        "https://images.pexels.com/photos/4041298/pexels-photo-4041298.jpeg?auto=compress&cs=tinysrgb&w=200",
       position: "bottom-32 left-20",
-      animation: "animate-float-fast"
+      animation: "animate-float-fast",
     },
     {
       id: 4,
-      image: "https://images.pexels.com/photos/4465619/pexels-photo-4465619.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image:
+        "https://images.pexels.com/photos/4465619/pexels-photo-4465619.jpeg?auto=compress&cs=tinysrgb&w=200",
       position: "bottom-20 right-10",
-      animation: "animate-float-slow"
-    }
+      animation: "animate-float-slow",
+    },
   ];
 
   return (
@@ -142,7 +145,7 @@ const FloatingProducts = () => {
           </div>
         </div>
       ))}
-      
+
       {/* Additional decorative elements */}
       <div className="absolute top-1/4 left-1/3 w-32 h-32 bg-gradient-to-br from-sky-200/20 to-blue-200/20 rounded-full animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-gradient-to-br from-indigo-200/20 to-purple-200/20 rounded-full animate-bounce"></div>
